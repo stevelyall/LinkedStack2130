@@ -14,7 +14,7 @@ import exceptions.EmptyCollectionException;
 
 public class LinkedStack<T> implements StackADT<T>
 {
-    private LinearNode<T> top;
+    protected LinearNode<T> top;
 
     /**
      * Creates an empty stack.
@@ -64,7 +64,6 @@ public class LinkedStack<T> implements StackADT<T>
      * @return top element in stack
      * @author stevelyall
      */
-    @Override
     public T peek() {
         if (isEmpty()) {
             throw new EmptyCollectionException("Can't peek, stack is empty.");
@@ -86,7 +85,6 @@ public class LinkedStack<T> implements StackADT<T>
      * @author stevelyall
      * @return the value of count
      */
-    @Override
     public int size() {
         if (isEmpty()) {
             return 0;

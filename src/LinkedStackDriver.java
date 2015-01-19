@@ -117,7 +117,7 @@ public class LinkedStackDriver {
 
         // check size is 0 and isEmpty() returns true
         System.out.println("Checking that size = 0 and isEmpty is true...");
-        System.out.println("Size: " + stack.size() + " isEmpty: " + stack.isEmpty());
+        System.out.println("Size: " + dropStack.size() + " isEmpty: " + dropStack.isEmpty());
         System.out.println();
 
         // push 3 elements to stack, stack not full
@@ -131,10 +131,9 @@ public class LinkedStackDriver {
         System.out.println(dropStack);
         System.out.println();
 
-        // TODO size 5?
         // check size is 3 and isEmpty() returns false
         System.out.println("Checking that size = 3 and isEmpty is false...");
-        System.out.println("Size: " + stack.size() + " isEmpty: " + stack.isEmpty());
+        System.out.println("Size: " + dropStack.size() + " isEmpty: " + dropStack.isEmpty());
         System.out.println();
 
         // push 3 more elements to stack, should drop first element pushed to stack ("One")
@@ -150,7 +149,7 @@ public class LinkedStackDriver {
 
         // check size is 5 and isEmpty() returns false
         System.out.println("Checking that size = 5 and isEmpty is false...");
-        System.out.println("Size: " + stack.size() + " isEmpty: " + stack.isEmpty());
+        System.out.println("Size: " + dropStack.size() + " isEmpty: " + dropStack.isEmpty());
         System.out.println();
 
         // test peeking at top element from stack
@@ -174,6 +173,7 @@ public class LinkedStackDriver {
 
         // pop all elements from stack, stack should be empty
         System.out.println("Popping all elements from stack:");
+        dropStack.pop();
         dropStack.pop();
         dropStack.pop();
         dropStack.pop();
