@@ -14,7 +14,6 @@ import exceptions.EmptyCollectionException;
 
 public class LinkedStack<T> implements StackADT<T>
 {
-    private int count;  
     private LinearNode<T> top;
 
     /**
@@ -22,7 +21,6 @@ public class LinkedStack<T> implements StackADT<T>
      */
     public LinkedStack()
     {
-        count = 0;
         top = null;
     }
 
@@ -37,7 +35,6 @@ public class LinkedStack<T> implements StackADT<T>
 
         temp.setNext(top);
         top = temp;
-        count++;
     }
 
     /**
@@ -54,7 +51,6 @@ public class LinkedStack<T> implements StackADT<T>
 
         T result = top.getElement();
         top = top.getNext();
-        count--;
  
         return result;
     }
@@ -77,12 +73,12 @@ public class LinkedStack<T> implements StackADT<T>
     }
 
     /**
-     * Checks to see if the stack is empty or not. Since count is equal to the number of elements in the stack, simply checks whether count equals zero.
+     * Checks to see if the stack is empty or not.
      * @author stevelyall
-     * @return true if count equals zero, false otherwise
+     * @return true if top is null, false otherwise
      */
     public boolean isEmpty() {
-        return (count==0) ? true : false;
+        return (top==null) ? true : false;
     }
 
     /**
@@ -92,7 +88,19 @@ public class LinkedStack<T> implements StackADT<T>
      */
     @Override
     public int size() {
-        return count;
+        if (isEmpty()) {
+            return 0;
+        }
+
+        LinearNode<T> current = top;
+        int numNodes = 0;
+        while (current!=null) {
+            numNodes++;
+            current = current.getNext();
+
+        }
+
+        return numNodes;
     }
 
     /**
@@ -100,8 +108,7 @@ public class LinkedStack<T> implements StackADT<T>
      * @author stevelyall
      * @return string representation of the stack
      */
-    public String toString()
-    {
+    public String toString() {
         String stackString = "<TOP OF STACK>";
         LinearNode currentNode = top;
         while (currentNode != null) {

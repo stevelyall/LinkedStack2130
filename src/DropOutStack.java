@@ -13,7 +13,6 @@ import exceptions.EmptyCollectionException;
 
 public class DropOutStack<T> implements StackADT<T> {
 	private int capacity;
-	private int count;
 	private LinearNode<T> top;
 	
 	/**
@@ -22,7 +21,6 @@ public class DropOutStack<T> implements StackADT<T> {
 	 **/
 	DropOutStack(int size) {
 		capacity = size;
-		count = 0;
 		top = null;
 	}
 	
@@ -32,7 +30,7 @@ public class DropOutStack<T> implements StackADT<T> {
 	 */
 	@Override
 	public void push(T element) {
-		if (count == capacity) {
+		if (size() == capacity) {
 
 			// find the second last element and set its next to null
 			LinearNode current = top;
@@ -41,17 +39,13 @@ public class DropOutStack<T> implements StackADT<T> {
 			}
 			current.setNext(null);
 
-			// push the new element
-			LinearNode<T> toPush = new LinearNode<T>(element);
-			toPush.setNext(top);
-			top = toPush;
+
 		}
-		else {
-			LinearNode<T> toPush = new LinearNode<T>(element);
-			toPush.setNext(top);
-			top = toPush;
-			count++;
-		}
+
+		// push the new element
+		LinearNode<T> toPush = new LinearNode<T>(element);
+		toPush.setNext(top);
+		top = toPush;
 	}
 	
 	/**
@@ -67,7 +61,6 @@ public class DropOutStack<T> implements StackADT<T> {
 		// remove top element and return it
 		T element = top.getElement();
 		top = top.getNext();
-		count--;
 		return element;
 	}
 	
@@ -85,23 +78,32 @@ public class DropOutStack<T> implements StackADT<T> {
 	}
 
 	/**
-	 * Checks to see if the stack is empty or not. Since count is equal to the number of elements in the stack, simply checks whether count equals zero.
-	 *
-	 * @return true if count equals zero, false otherwise
+	 * Checks to see if the stack is empty or not.
+	 * @return true if top is null, false otherwise
 	 */
-	@Override
 	public boolean isEmpty() {
-		return (count==0) ? true : false;
+		return (top==null) ? true : false;
 	}
-	
+
 	/**
-	 * Returns the current number of elements in the stack.
-	 * 
-	 * @return value of count
+	 * Get the number of items in the stack.
+	 * @return the value of count
 	 */
 	@Override
 	public int size() {
-		return count;
+		if (isEmpty()) {
+			return 0;
+		}
+
+		LinearNode<T> current = top;
+		int numNodes = 0;
+		while (current!=null) {
+			numNodes++;
+			current = current.getNext();
+
+		}
+
+		return numNodes;
 	}
 
 	/**
